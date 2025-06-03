@@ -5,9 +5,8 @@ from openai import OpenAI
 class OpenAISummarization:
     def __init__(self, api_key=None):
         # Initialize the OpenAI client with an API key
-        api_key="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"
-        
-        self.api_key = api_key or os.getenv("OPEN_API_KEY")
+
+        self.api_key = os.getenv("OPEN_API_KEY")
         self.client = OpenAI(api_key=self.api_key)
 
     def generate_summary(self, input_text, max_tokens=512):
