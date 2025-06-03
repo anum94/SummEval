@@ -1,0 +1,14 @@
+DB_NAME="defaultdb"
+DB_HOST="summeval-db-summeval.h.aivencloud.com"
+DB_PORT=24067
+DB_USERNAME="avnadmin"
+DB_PASSWORD=""
+
+SENDGRID_API_KEY=""
+FROM_EMAIL_ADDRESS="noreply.summeval@gmail.com"
+
+BASE_URL="http://localhost:3000"
+
+OPENAI_API_KEY=""
+TOGETHERAI_KEY=""
+TOGETHER_API_KEY =""
