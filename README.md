@@ -83,7 +83,7 @@ OpenAI API Key for generating fact scores: If the usage limit is exceeded, updat
 
 OPENAI_API_KEY=<your_openai_api_key>
 
-
+The .env files should also be updated with database credential. These can be obtained by contacting the owner of this repository.
 
 
 ## Database Migrations
