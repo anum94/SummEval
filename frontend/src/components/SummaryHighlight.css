@@ -1,0 +1,20 @@
+.summary-highlight {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.highlight {
+  background-color: #1ba098;
+}
+
+.styled-hover-box {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 1000;
+  max-width: 200px;
+  word-wrap: break-word;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

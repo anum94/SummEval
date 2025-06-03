@@ -1,0 +1,52 @@
+/* Primary fornt */
+@import '@fontsource/nunito/400.css';
+@import '@fontsource/nunito/500.css';
+@import '@fontsource/nunito/600.css';
+@import '@fontsource/nunito/700.css';
+@import '@fontsource/nunito/800.css';
+
+/* Secondary font */
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/inter/800.css';
+
+
+/* HTML */
+html {
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+body,
+#root,
+#root__layout {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 100%;
+  flex-direction: column;
+}
+/* Remove margin and padding for the main element and set the height to 100% */
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+/* Remove arrows from number input and make it look like a text input and remove the increment and decrement buttons */
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: none;
+}
+input[type='number']::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+input[type='number']::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}

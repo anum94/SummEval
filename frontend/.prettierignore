@@ -1,0 +1,11 @@
+# Ignore all files in the root except the .gitignore file
+# Build directories
+build/*
+dist/*
+public/*
+**/out/*
+**/.next/*
+**/node_modules/*
+
+package-lock.json
+jsconfig.json

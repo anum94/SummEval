@@ -1,0 +1,79 @@
+stages:
+  - publish
+  - deploy
+
+# Publish the docker image to the registry
+publish:
+  
+  # image: The GitLab runner will create a Docker container for each job and execute the script within this container
+  image: docker:27.0.1
+  
+  stage: publish
+  
+  # services: Docker-in-Docker—the dind service. This is the reason why you registered the GitLab runner in privileged mode.
+  services:
+    - docker:27.0.1-dind
+  
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_TLS_CERTDIR: ""
+
+  # befre-script: Check the version available for of Docker and Docker Compose
+  before_script:
+    - docker info
+    - docker version
+    - docker compose version
+  
+  # script: specifies the shell commands to execute for this job. The working directory will be set to the repository root when these commands will be executed.
+  script:
+    # Builds the Docker image based on the Dockerfile and tags it with the latest commit tag defined in the variables section.
+    - docker compose build 
+    
+    # Logs Docker in to the project’s container registry. You use the predefined variable $CI_JOB_TOKEN as an authentication token. GitLab will generate the token and stay valid for the job’s lifetime.
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    
+    # Pushes both image tags to the container registry.
+    - docker compose push
+
+# Deploy image to website
+deploy:
+
+  # Alpine is a lightweight Linux distribution and is sufficient as a Docker image here.
+  image: alpine:latest
+  stage: deploy
+  tags:
+    - deployment
+  script:
+
+    # Revokes all permissions for group and others from the private key, such that only the owner can use it. This is a requirement, otherwise SSH refuses to work with the private key.
+    - chmod og= $ID_RSA
+
+    # Updates Alpine’s package manager (apk) and installs the openssh-client, which provides the ssh command.
+    - apk update && apk add openssh-client
+
+
+    # ssh connect pattern for all deployment commands: ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "command"
+    # -i stands for identity file
+    # -o StrictHostKeyChecking=no makes sure to bypass the question, whether or not you trust the remote host. This question can not be answered in a non-interactive context such as the pipeline.
+    # command will be executed on the remote host.
+
+    # docker login: Logs Docker in to the container registry.
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY"
+
+    # docker pull: Pulls the latest image from the container registry.
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker compose pull"
+
+    # || true makes sure that the exit code is always successful, even if there was no container running by the name summeval. This guarantees a delete if exists routine without breaking the pipeline when the container does not exist (for example, for the first deployment).
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker compose down || true"
+
+    # -d starts the container in detached mode, otherwise the pipeline would be stuck waiting for the command to terminate.
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker compose up -d"
+
+  # When a pipeline job defines an environment section, GitLab will create a deployment for the given environment (here production) each time the job successfully finishes. This allows you to trace all the deployments created by GitLab CI/CD. For each deployment you can see the related commit and the branch it was created for.
+  environment:
+    name: production
+    url: http://138.246.236.209
+
+  # The only section is one option of restricting job execution to certain branches/tags. Here you want to execute the deployment job for the master branch only. https://docs.gitlab.com/ee/ci/yaml/#rules
+  only:
+    - main

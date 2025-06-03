@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   data-v-423bf9ae=""
+   viewBox="0 0 90 90"
+   class="iconLeft"
+   version="1.1"
+   id="svg3"
+   width="90"
+   height="90"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs3" />
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <g
+     data-v-423bf9ae=""
+     id="fa8b3aeb-60ac-4da9-9a45-7f6dfcf24b48"
+     transform="scale(2.8125)"
+     stroke="none"
+     fill="#1ba098">
+    <path
+       d="M 16,1 C 24.271,1 31,7.729 31,16 31,24.271 24.271,31 16,31 7.729,31 1,24.271 1,16 1,7.729 7.729,1 16,1 M 16,0 C 7.163,0 0,7.163 0,16 0,24.837 7.163,32 16,32 24.837,32 32,24.837 32,16 32,7.163 24.837,0 16,0 Z"
+       id="path2" />
+    <path
+       d="M 16,7.045 24.955,16 16,24.955 7.045,16 16,7.045 M 16,5.631 5.631,16 16,26.369 26.369,16 Z"
+       id="path3" />
+  </g>
+  <!---->
+</svg>

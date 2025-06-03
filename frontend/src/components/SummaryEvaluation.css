@@ -1,0 +1,21 @@
+/* src/components/SummaryEvaluation.css */
+.full-height-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.upload-button {
+  margin-top: 20px;
+  align-self: center;
+}
+
+.text-display-container {
+  flex-grow: 1;
+}

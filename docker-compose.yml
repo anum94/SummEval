@@ -1,0 +1,57 @@
+# version is obsolete and deprecated
+services:
+
+  redis:
+      image: redis:6.2-alpine
+      restart: always
+      ports:
+        - '6379:6379'
+      command: redis-server
+      volumes: 
+        - ./data:/data
+
+  backend:
+    container_name: back
+    image: gitlab.lrz.de:5005/seba-lab-summeval/summeval/backend:latest
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/summeval/backend
+    environment:
+      DJANGO_ENV: ${DJANGO_ENV:-development}
+    env_file:
+      - ./backend/.env.${DJANGO_ENV:-development}  
+    stdin_open: true
+    tty: true
+    #command: python3 manage.py runserver 0.0.0.0:8000
+
+  frontend:
+    container_name: front
+    image: gitlab.lrz.de:5005/seba-lab-summeval/summeval/frontend:latest
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/summeval/frontend
+
+  celery:
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    command: celery -A summeval worker -l info
+    volumes:
+      - ./backend:/summeval/backend
+    depends_on:
+      - backend
+      - redis

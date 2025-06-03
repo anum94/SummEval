@@ -1,0 +1,51 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files. gitignore is a global ignore file for all git repositories on your computer. It is not specific to a single repository.
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# testing
+coverage
+
+# production
+.next
+.swc
+_static
+out
+dist
+dist-ssr
+build
+*.local
+
+# environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vercel
+.netlify
+.vscode
+.eslintcache
+.unimportedrc.json
+tsconfig.tsbuildinfo

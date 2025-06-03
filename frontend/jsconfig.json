@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": "."
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5"
+  }
+}
