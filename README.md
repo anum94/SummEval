@@ -62,7 +62,8 @@ Ensure you have the following installed on your system:
 
 1. **Add Environment Variables**  
    - Create a `.env` file inside the `backend/summeval` directory.  
-   - Configure the required environment variables in the `.env` file.  
+   - Configure the required environment variables in the `.env` file.
+   - Please request the .env file by emailing to anumafzaldogar@gmail.com
 
 2. **Build the Docker Containers**  
    ```sh
