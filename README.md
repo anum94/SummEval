@@ -6,7 +6,7 @@
 ### Description  
 SummEval is a free tool designed for **researchers and annotators** to obtain both auto-generated scores and human feedback on **LLM-generated summaries**. By uploading your experiments, you can evaluate the quality of your summaries, compare them against other models, and gain insights into performance across different domains. SummEval provides a user-friendly **dashboard** that allows you to monitor, manage, and compare multiple experiments efficiently.
 
-<img src="frontend/public/screenshots/project_form.png" alt="Screenshot" width="500"/>
+<img src="frontend/public/screenshots/summeval.png" alt="Screenshot" width="500"/>
 
 ### Purpose  
 SummEval was created to **bridge the gap between human evaluation and automated summarization metrics**. While automated metrics like ROUGE and BERTScore provide quick assessments, they often fail to capture nuanced human preferences. SummEval allows researchers to:  
@@ -18,6 +18,8 @@ SummEval was created to **bridge the gap between human evaluation and automated 
 ## Features
 
 SummEval provides a comprehensive evaluation platform for **LLM-generated summaries**, offering a range of functionalities for both researchers and annotators.
+
+<img src="frontend/public/screenshots/project_form.png" alt="Screenshot" width="500"/>
 
 ### Key Features  
 - **Create Projects** – Organize your evaluation tasks by creating distinct projects for different research domains.  
